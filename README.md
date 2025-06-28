@@ -9,7 +9,8 @@ This repository contains **MATLAB code** and resources accompanying the tutorial
 ## 📌 Topics Covered  
 - **Digital Modulation Techniques** – PSK, QAM, FSK, etc.  
 - **Multiplexing Methods** – TDMA, FDMA, OFDM  
-- **Wireless Communication & SDR** – Understanding modern wireless systems  
+- **Wireless Communication & SDR** – Understanding modern wireless systems
+- **5G NR Waveform Analysis** – SSB, PSS, SSS, MIB, PDCCH, PDSCH
 - **MATLAB Signal Processing** – Hands-on coding examples
 
 ## 📂 Repository Structure
@@ -18,7 +19,14 @@ This repository contains **MATLAB code** and resources accompanying the tutorial
 ├── 📄 README.md (This file)
 ├── 📁 5gNewRadio/
 │ ├── 📁 +transmitter/
+│ │ ├── bwp.m
+│ │ ├── carrier.m
 │ │ ├── config.m
+│ │ ├── ssb.m
+│ ├── 📁 +utils/
+│ │ ├── maxTransBwConfig.m
+│ │ ├── ssbSubcarrierSpacing.m
+│ │ ├── syncRaster.m
 │ ├── NrTransmitter.m
 ├── 📁 DigitalModulations/
 │ ├── DemoDigitalModulations.m

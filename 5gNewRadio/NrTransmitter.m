@@ -1,9 +1,10 @@
 clearvars; close all;
 
 %% Configuration
-numSubframes = 5;
+numSubframes = 25;
 fc = 3925e6;
-wavegenConfig = transmitter.config(numSubframes, fc);
+bw = 10;
+wavegenConfig = transmitter.config(numSubframes, fc, bw);
 
 %% Generation
 [txWaveform, waveInfo] = nrWaveformGenerator(wavegenConfig);
