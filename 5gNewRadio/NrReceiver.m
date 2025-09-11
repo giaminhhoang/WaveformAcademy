@@ -14,8 +14,20 @@ rxWaveform = file.txWaveform;
 nfft = fs / scsSsb / 1e3;
 maxBw = max(utils.availableBandwidths(fs));
 
+if fc > 3e9
+    nSsbHalfFrame = 8;
+else
+    nSsbHalfFrame = 4;
+end
+
 %% Channel
+snr = 10;
 cfo = scsSsb * 1e3 * 1.3;
+
+rxWaveform = circshift(rxWaveform, 100) + ...
+    0.05 * circshift(rxWaveform, 300) .* ...
+    exp(1i * 2 * pi * 100 * (0 : length(rxWaveform) - 1).' / fs);
+rxWaveform = awgn(rxWaveform, snr, 'measured');
 rxWaveform = rxWaveform .* exp(1i * 2 * pi * cfo * ...
     (0 : length(rxWaveform) - 1).' / fs);
 
@@ -73,4 +85,18 @@ for i = 1 : length(timingOffsets)
     [nid1, ncellid] = receiver.detectSss(ssbRxSymbols, nid2);
     disp("   NID1 = " + nid1);
     disp("   NCellID = " + ncellid);
+
+    [hest, nVar, iSsb] = receiver.pbchDmrsChanEst(ssbRxSymbols, ncellid);
+    disp("   i_SSB = " + iSsb);
+
+    [crcBch, trblk, sfn4lsb, msbidxoffset] = receiver.pbchDecode(...
+        ssbRxSymbols, ncellid, hest, nVar, iSsb, nSsbHalfFrame);
+    if crcBch
+        disp('   BCH CRC is not zero.');
+        continue;
+    end
+
+    [mib, mibParsed] = receiver.decodeMib(...
+        trblk, nSsbHalfFrame, sfn4lsb, msbidxoffset);
+    disp(mibParsed);
 end
