@@ -48,6 +48,7 @@ This repository contains **MATLAB code** and resources accompanying the tutorial
 │ ├── DemoCorrelation.m
 │ ├── DemoDFT.m
 │ ├── DemoInterpolation.m
+│ ├── DemoWindowing.m
 ```
 ## 🔧 Getting Started  
 1. Clone this repository:  
