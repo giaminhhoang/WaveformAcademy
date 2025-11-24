@@ -50,6 +50,12 @@ This repository contains **MATLAB code** and resources accompanying the tutorial
 │ ├── DemoDFT.m
 │ ├── DemoInterpolation.m
 │ ├── DemoWindowing.m
+├── 📁 SingleCarrierSystem/
+│ ├── 📁 +utils/
+│ │ ├── bits2text.m
+│ │ ├── rand_str.m
+│ │ ├── text2bits.m
+│ ├── DemoSingleCarrierTransmission.m
 ```
 ## 🔧 Getting Started  
 1. Clone this repository:  
